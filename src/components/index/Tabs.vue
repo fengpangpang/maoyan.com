@@ -3,13 +3,13 @@
     <address>北京 *</address>
     <ul>
       <li
-        v-for="(item,index) in tabsList"
+        v-for="(item, index) in tabsList"
         :key="index"
-        :class="{active:activeIndex === index}"
-        @click="tabsChange(index)"
+        :class="{ active: activeIndex === index }"
+        @click="tabsChange(index, item.url)"
       >
-        {{ item }}
-        <div class="underLine" v-if="activeIndex===index"></div>
+        {{ item.title }}
+        <div class="underLine" v-if="activeIndex === index"></div>
       </li>
     </ul>
     <span class="iconfont icon-fangdajing"></span>
@@ -20,14 +20,31 @@
 export default {
   data() {
     return {
-      tabsList: ["热映", "影院", "待映", "经典电影"],
+      tabsList: [
+        {
+          title: "热映",
+          url: "/hot",
+        },
+        {
+          title: "影院",
+          url: "/cinema",
+        },
+        {
+          title: "待映",
+          url: "/daiying",
+        },
+        {
+          title: "经典电影",
+          url: "/jingdian",
+        },
+      ],
       activeIndex: 0,
     };
   },
   methods: {
-    tabsChange(i) {
-      console.log(i);
+    tabsChange(i, url) {
       this.activeIndex = i;
+      this.$router.push(url);
     },
   },
 };

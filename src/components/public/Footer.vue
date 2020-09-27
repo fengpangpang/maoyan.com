@@ -1,14 +1,15 @@
 <template>
   <div class="my-footer">
     <router-link
-      v-for="(item, i) in newsList"
-      :key="i"
+      v-for="(item, index) in newsList"
+      :key="index"
       :to="item.url"
       tag="div"
-      active-class="active"
+      @click.native="o(index)"
+      :class="{ active: index == value1 }"
     >
       <span :class="item.cl"></span>
-      <span class="over" active-class="active">{{ item.name }}</span>
+      <span class="over">{{ item.name }}</span>
     </router-link>
   </div>
 </template>
@@ -16,7 +17,7 @@
 export default {
   data() {
     return {
-      index: 0,
+      value1: 0,
       newsList: [
         {
           name: "电影/影院",
@@ -45,6 +46,12 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    o(index) {
+      console.log(index);
+      this.value1 = index;
+    },
   },
 };
 </script>
@@ -87,7 +94,7 @@ export default {
     }
   }
   .active {
-    color: red !important;
+    color: red;
   }
 }
 </style>
