@@ -19,6 +19,7 @@ const routes = [
   {
     path: "/index",
     component: () => import("../views/Index.vue"),
+    meta: { title: "猫眼电影" },
     children: [
       {
         path: "/index",
@@ -45,18 +46,32 @@ const routes = [
   {
     path: "/video",
     component: () => import("../views/Video.vue"),
+    meta: { title: "猫眼视频" },
   },
   {
     path: "/mini-video",
     component: () => import("../views/MiniVideo.vue"),
+    meta: { title: "猫眼小视频" },
   },
   {
     path: "/show",
     component: () => import("../views/Show.vue"),
+    meta: { title: "猫眼演出" },
   },
   {
     path: "/Mine",
     component: () => import("../views/Mine.vue"),
+    meta: { title: "我的" },
+  },
+  {
+    path: "/detail/:id",
+    name: "detail",
+    meta: { need: true, title: "猫眼详情" },
+    component: () => import("../views/Detail"),
+  },
+  {
+    path: "/Cities",
+    component: () => import("../views/Cities.vue"),
   },
   {
     path: "*",
@@ -68,4 +83,10 @@ const router = new VueRouter({
   routes,
 });
 
+//全局前置守卫
+// 挂载路由守卫
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title ? to.meta.title : "猫眼电影";
+  next();
+});
 export default router;

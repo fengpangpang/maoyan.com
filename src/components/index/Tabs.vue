@@ -1,6 +1,6 @@
 <template>
   <nav class="my-tabs">
-    <address>北京 *</address>
+    <p @click="citiesHandler">北京 *</p>
     <ul>
       <li
         v-for="(item, index) in tabsList"
@@ -46,6 +46,9 @@ export default {
       this.activeIndex = i;
       this.$router.push(url);
     },
+    citiesHandler() {
+      this.$router.push("/Cities");
+    },
   },
 };
 </script>
@@ -63,7 +66,7 @@ export default {
   position: fixed;
   top: 50px;
   z-index: 1;
-  address {
+  p {
     color: #666;
   }
 

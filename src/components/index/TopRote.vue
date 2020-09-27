@@ -3,7 +3,11 @@
     <p class="title">最受好评的电影</p>
     <div class="ul-wrap">
       <ul>
-        <li v-for="item in topRatedList" :key="item.id">
+        <li
+          v-for="item in topRatedList"
+          :key="item.id"
+          @click="toDetail(item.id)"
+        >
           <div class="img-wrap">
             <img :src="item.img" alt />
           </div>
@@ -27,6 +31,14 @@ export default {
         scrollY: false,
         scrollX: true,
         click: true,
+      });
+    },
+  },
+  methods: {
+    toDetail(id) {
+      this.$router.push({
+        name: "detail",
+        params: { id: id },
       });
     },
   },

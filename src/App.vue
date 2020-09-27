@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <my-footer />
+    <transition name="fade">
+      <router-view v-if="$route.meta.need"></router-view>
+    </transition>
+    <router-view v-if="!$route.meta.need"></router-view>
+    <my-footer /> 
   </div>
 </template>
 
@@ -23,6 +26,14 @@ export default {
     left: 0;
     right: 0;
     background: #f5f5f5;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 </style>

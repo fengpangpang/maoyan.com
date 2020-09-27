@@ -16,3 +16,13 @@ export function getIndexList(params) {
 export function pullUpLoadList(params) {
   return http.post("/home/moreComingList", params);
 }
+
+//影片详情页
+export function detailList(params) {
+  return http.get("/detail/info", params);
+}
+
+//城市列表接口
+export function getcityList(params) {
+  return http.get("/cities/list", params);
+}
